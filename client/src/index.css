@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'Gilroy';
+	font-style: light;
+	font-weight: 300;
+	src: local('Gilroy'), local('Gilroy-light'),
+		url('../public/assets/fonts/gilroy/Gilroy-Light.ttf');
+}
+
+@font-face {
+	font-family: 'Gilroy';
+	font-style: bold;
+	font-weight: 600;
+	src: local('Gilroy'), local('Gilroy-bold'),
+		url('../public/assets/fonts/gilroy/Gilroy-ExtraBold.ttf');
+}
+
+@font-face {
+	font-family: 'Gilroy';
+	font-style: medium;
+	font-weight: 400;
+	src: local('Gilroy'), local('Gilroy-bold'),
+		url('../public/assets/fonts/gilroy/Gilroy-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'Titania';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Titania'), local('Titania-Regular'),
+		url('../public/assets/fonts/Titania-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'HastanSignature';
+	font-style: normal;
+	font-weight: 400;
+	src: local('HastanSignature'), local('HastanSignature-Regular'),
+		url('../public/assets/fonts/HastanSignature.otf');
+}
+
+.hastan {
+	font-family: HastanSignature, serif !important;
+}
+
+* {
+	font-family: 'Gilroy' !important;
+	font-weight: 300;
+	scroll-behavior: smooth;
+	scroll-padding-block: 2rem;
+}
+
+.app {
+	overflow-x: hidden !important;
+}

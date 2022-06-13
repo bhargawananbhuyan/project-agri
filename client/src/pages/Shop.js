@@ -1,4 +1,4 @@
-import { Box } from '@mui/system'
+import { Close } from '@mui/icons-material'
 import {
 	Button,
 	colors,
@@ -10,12 +10,12 @@ import {
 	Typography,
 	useTheme,
 } from '@mui/material'
+import { Box } from '@mui/system'
+import { useLayoutEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Rating } from '../components/landing/Accessories'
 import ProductDetails from '../components/landing/ProductDetails'
-import { useLayoutEffect, useState } from 'react'
-import { Close } from '@mui/icons-material'
-import { products } from '../utils/data'
-import { useNavigate } from 'react-router-dom'
+import { shopProducts } from '../utils/shopProducts'
 
 function Shop() {
 	const theme = useTheme()
@@ -27,7 +27,7 @@ function Shop() {
 
 	const handleDialogOpen = ({ id }) => {
 		setOpenDialog(true)
-		setProductData(products[id - 1])
+		setProductData(shopProducts[id - 1])
 	}
 
 	const handleDialogClose = () => {
@@ -45,47 +45,35 @@ function Shop() {
 				<Box sx={classes.shopContent}>
 					<Typography variant='h4'>SHOP NOW</Typography>
 					<Box sx={classes.shopGrid}>
-						<Box sx={classes.productCard}>
-							<Typography component='caption'>Delivery within 3-5 days</Typography>
+						{shopProducts.map((product, i) => (
+							<Box key={i} sx={classes.productCard}>
+								<Typography component='caption'>
+									{product.description.delivery}
+								</Typography>
 
-							<Box>
-								<Box component='section'>
-									<Rating rating={5} />
-									<Typography variant='h5'>{products[6].name}</Typography>
-									<Typography paragraph>
-										{products[6].description.engine}
-									</Typography>
-									{/* <Typography component="div">Rs. 1500</Typography> */}
-									<Button
-										variant='outlined'
-										onClick={() => handleDialogOpen({ id: 7 })}
-									>
-										view more
-									</Button>
+								<Box>
+									<Box component='section'>
+										<Rating rating={5} />
+										<Typography variant='h5'>{product.name}</Typography>
+										<Typography paragraph>
+											{product.description.engine}
+										</Typography>
+										{product.description?.price && (
+											<Typography component='div'>
+												Rs. {product.description.price}
+											</Typography>
+										)}
+										<Button
+											variant='outlined'
+											onClick={() => handleDialogOpen({ id: product.id })}
+										>
+											view more
+										</Button>
+									</Box>
+									<img src={`/assets/${product.image}`} alt='' />
 								</Box>
-								<img src={'/assets/agri-08.png'} alt='' />
 							</Box>
-						</Box>
-						<Box sx={classes.productCard}>
-							<Typography component='caption'>Delivery within 3-5 days</Typography>
-
-							<Box>
-								<Box component='section'>
-									<Rating rating={5} />
-									<Typography variant='h5'>{products[1].name}</Typography>
-									<Typography paragraph>
-										{products[1].description.engine}
-									</Typography>
-									<Button
-										variant='outlined'
-										onClick={() => handleDialogOpen({ id: 2 })}
-									>
-										view more
-									</Button>
-								</Box>
-								<img src={'/assets/agri-02.png'} alt='' />
-							</Box>
-						</Box>
+						))}
 					</Box>
 				</Box>
 			</Box>
@@ -157,7 +145,11 @@ function Shop() {
 							}}
 						>
 							<Typography variant='h4'>{productData.name}</Typography>
-							{/* <Typography variant='h5'>Rs. 1500</Typography> */}
+							{productData.description?.price && (
+								<Typography component='div' variant='h5' sx={{ mt: 1.5 }}>
+									Rs. {productData.description.price}
+								</Typography>
+							)}
 							<Box sx={{ display: 'flex', alignItems: 'flex-start', mt: 2.5 }}>
 								<Rating rating={5} />
 								<Typography sx={{ ml: 2.5, fontSize: 18 }}>(10 reviews)</Typography>

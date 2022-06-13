@@ -126,7 +126,7 @@ export const products = [
 	},
 	{
 		id: 5,
-		name: 'POWER WEEDER WM 1100-A6 DLX',
+		name: 'POWER WEEDER WM 1000N/A',
 		image: 'agri-05.png',
 		type: 'weeder',
 		description: {
@@ -230,7 +230,7 @@ export const products = [
 	},
 	{
 		id: 8,
-		name: 'MAIJO REAPER MY 4G 120A',
+		name: 'POWER WEEDER WM 1100A6',
 		image: 'agri-07.png',
 		type: 'reaper',
 		description: {
@@ -296,6 +296,7 @@ export const products = [
 		image: 'producta-2.png',
 		type: 'reaper',
 		description: {
+			engine: '2 in 1 Sprayer',
 			chemical_tank_capacity: '16 Ltr',
 			weight_of_the_sprayer: '7 kg',
 			charging_duration: '8 hours',
@@ -393,7 +394,7 @@ export const products = [
 	},
 	{
 		id: 14,
-		name: 'MAIJO REAPER MY 4G 120A',
+		name: 'RICE TRANSPLANTER - MAIJO AP 40',
 		image: 'producta-4.png',
 		type: 'reaper',
 		description: {

@@ -24,6 +24,7 @@ function Shop() {
 
 	let [productData, setProductData] = useState({})
 	let [openDialog, setOpenDialog] = useState(false)
+	const [mainImg, setMainImg] = useState('')
 
 	const handleDialogOpen = ({ id }) => {
 		setOpenDialog(true)
@@ -32,6 +33,7 @@ function Shop() {
 
 	const handleDialogClose = () => {
 		setProductData({})
+		setMainImg('')
 		setOpenDialog(false)
 	}
 
@@ -51,7 +53,21 @@ function Shop() {
 									{product.description.delivery}
 								</Typography>
 
-								<Box>
+								<Box
+									sx={{
+										'& img': {
+											position: 'absolute',
+											right: i === 2 ? 20 : 0,
+											bottom: i === 2 ? -75 : -165,
+											height: 'auto',
+											width: i === 2 ? 350 : 650,
+											[theme.breakpoints.down('md')]: {
+												width: i === 2 ? 200 : 350,
+												right: i === 2 ? 0 : -25,
+											},
+										},
+									}}
+								>
 									<Box component='section'>
 										<Rating rating={5} />
 										<Typography variant='h5'>{product.name}</Typography>
@@ -65,6 +81,7 @@ function Shop() {
 										)}
 										<Button
 											variant='outlined'
+											sx={{ zIndex: 100 }}
 											onClick={() => handleDialogOpen({ id: product.id })}
 										>
 											view more
@@ -115,23 +132,40 @@ function Shop() {
 								height: 450,
 								position: 'relative',
 								borderRadius: 5,
-								'& img': {
-									position: 'absolute',
-									bottom: -150,
-									right: 0,
+								'& .img-a': {
+									objectFit: 'cover',
 									width: '100%',
 									height: 'auto',
+									borderRadius: 5,
 								},
-								[theme.breakpoints.down('sm')]: {
+								'& .img-b': {
+									position: 'absolute',
+									bottom: -150,
+									right: productData.id === 3 ? 75 : 0,
+									width: productData.id === 3 ? 350 : '100%',
+									height: 'auto',
+								},
+								[theme.breakpoints.down('md')]: {
 									height: 300,
 									borderRadius: 2.5,
-									'& img': {
-										bottom: -125,
+									'& .img-b': {
+										bottom: productData.id === 3 ? -75 : -125,
+										width: productData.id === 3 ? 200 : '85%',
 									},
 								},
 							}}
 						>
-							<img src={`/assets/${productData.image}`} alt='' />
+							{mainImg && mainImg !== `/assets/${productData.image}` ? (
+								<img src={mainImg} alt='' className='img-a' />
+							) : mainImg && mainImg === `/assets/${productData.image}` ? (
+								<img src={mainImg} alt='' className='img-b' />
+							) : (
+								<img
+									src={`/assets/${productData.image}`}
+									alt=''
+									className='img-b'
+								/>
+							)}
 						</Box>
 						<Box
 							sx={{
@@ -227,17 +261,30 @@ function Shop() {
 							},
 						}}
 					>
-						{[...new Array(8)].map((i) => (
-							<Box
-								key={i}
-								sx={{
-									height: 125,
-									width: 125,
-									backgroundColor: colors.grey[200],
-									borderRadius: 2.5,
-								}}
-							/>
-						))}
+						{productData?.images &&
+							[`/assets/${productData.image}`, ...productData.images].map(
+								(img, i) => (
+									<Box
+										onClick={() => setMainImg(img)}
+										key={i}
+										sx={{
+											height: 125,
+											width: 125,
+											backgroundColor: colors.grey[200],
+											borderRadius: 2.5,
+											overflow: 'hidden',
+
+											'& img': {
+												width: '100%',
+												height: 'auto',
+												objectFit: 'contain',
+											},
+										}}
+									>
+										<img src={img} alt='' />
+									</Box>
+								)
+							)}
 					</Box>
 					<Divider sx={{ my: 7.5, borderColor: colors.grey[200] }} />
 
@@ -313,14 +360,6 @@ const useStyles = (theme) => ({
 			borderBottomLeftRadius: 20,
 			borderTopRightRadius: 20,
 		},
-
-		'& img': {
-			position: 'absolute',
-			right: 0,
-			bottom: -165,
-			height: 'auto',
-			width: 650,
-		},
 		'& section': {
 			'& h5': {
 				fontWeight: 'bold',
@@ -351,10 +390,6 @@ const useStyles = (theme) => ({
 		[theme.breakpoints.down('md')]: {
 			px: 3.5,
 			pt: 8.5,
-			'& img': {
-				width: 350,
-				right: -25,
-			},
 			'& section': {
 				'& h5': {
 					fontSize: 21,

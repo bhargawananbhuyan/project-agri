@@ -60,6 +60,12 @@ export const products = [
 		id: 3,
 		name: 'POWER WEEDER WM 990',
 		image: 'agri-03.png',
+		images: [
+			'/assets/product-images/WM 990/1.png',
+			'/assets/product-images/WM 990/2.png',
+			'/assets/product-images/WM 990/3.png',
+			'/assets/product-images/WM 990/4.png',
+		],
 		type: 'weeder',
 		description: {
 			engine: '7 HP -3600 RPM',
@@ -94,6 +100,12 @@ export const products = [
 		id: 4,
 		name: 'POWER WEEDER WM 1100C',
 		image: 'agri-04.png',
+		images: [
+			'/assets/product-images/WM 1100C WITH 6 HP GEAR BOX/Untitled design.png',
+			'/assets/product-images/WM 1100C WITH 6 HP GEAR BOX/Untitled design (1).png',
+			'/assets/product-images/WM 1100C WITH 6 HP GEAR BOX/Untitled design (2).png',
+			'/assets/product-images/WM 1100C WITH 6 HP GEAR BOX/Untitled design (3).png',
+		],
 		type: 'weeder',
 		description: {
 			engine: '7 HP -3600 RPM',
@@ -164,6 +176,11 @@ export const products = [
 		id: 6,
 		name: 'POWER WEEDER WM 1100C-6',
 		image: 'agri-06.png',
+		images: [
+			'/assets/product-images/WM 1100C6 DIESEL POWER WEEDER/1.png',
+			'/assets/product-images/WM 1100C6 DIESEL POWER WEEDER/2.png',
+			'/assets/product-images/WM 1100C6 DIESEL POWER WEEDER/3.png',
+		],
 		type: 'weeder',
 		description: {
 			engine: '7.3 HP -3600 RPM',
@@ -201,6 +218,16 @@ export const products = [
 		id: 7,
 		name: 'POWER TILLER - MAIJO MAHAVEER 13HP',
 		image: 'agri-08.png',
+		images: [
+			'/assets/product-images/MAHAVEER POWER TILLER/1.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/2.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/3.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/4.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/5.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/6.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/7.png',
+			'/assets/product-images/MAHAVEER POWER TILLER/8.png',
+		],
 		type: 'tiller',
 		description: {
 			engine: '13HP -2400 RPM',
@@ -232,6 +259,12 @@ export const products = [
 		id: 8,
 		name: 'POWER WEEDER WM 1100A6',
 		image: 'agri-07.png',
+		images: [
+			'/assets/product-images/WM 1100C6 WITH BACKROTARY ATTACHMENT/Untitled design.png',
+			'/assets/product-images/WM 1100C6 WITH BACKROTARY ATTACHMENT/Untitled design (1).png',
+			'/assets/product-images/WM 1100C6 WITH BACKROTARY ATTACHMENT/Untitled design (2).png',
+			'/assets/product-images/WM 1100C6 WITH BACKROTARY ATTACHMENT/Untitled design (3).png',
+		],
 		type: 'reaper',
 		description: {
 			engine: '6 HP -3600 RPM',

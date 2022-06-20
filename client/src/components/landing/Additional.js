@@ -203,6 +203,26 @@ export const Footer = () => {
 
 	const [bType, setBType] = useState('general')
 
+	const [formData, setFormData] = useState(
+		bType === 'general'
+			? {
+					firstName: '',
+					lastName: '',
+					email: '',
+					contactNo: '',
+					message: '',
+			  }
+			: {
+					firstName: '',
+					lastName: '',
+					gstNo: '',
+					contactNo: '',
+					message: '',
+			  }
+	)
+
+	const handleFormInput = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
+
 	return (
 		<>
 			<Box sx={classes.contactFormRoot} id='contact'>
@@ -230,7 +250,14 @@ export const Footer = () => {
 								Contact Form
 							</Typography>
 						</Box>
-						<form>
+						<form
+							onSubmit={(e) => {
+								e.preventDefault()
+								window.location.replace(
+									`https://wa.me/+919962555666?text=${JSON.stringify(formData)}`
+								)
+							}}
+						>
 							<Box sx={{ gridColumn: 'span 2 / auto' }}>
 								<RadioGroup
 									defaultValue={bType}
@@ -262,10 +289,49 @@ export const Footer = () => {
 									/>
 								</RadioGroup>
 							</Box>
-							<Input placeholder='Enter first name' fullWidth disableUnderline />
-							<Input placeholder='Enter last name' fullWidth disableUnderline />
-							<Input placeholder='Enter email' fullWidth disableUnderline />
-							<Input placeholder='Enter contact no.' fullWidth disableUnderline />
+							<Input
+								placeholder='Enter first name'
+								fullWidth
+								disableUnderline
+								name='firstName'
+								value={formData.firstName}
+								onChange={handleFormInput}
+							/>
+							<Input
+								placeholder='Enter last name'
+								fullWidth
+								disableUnderline
+								name='lastName'
+								value={formData.lastName}
+								onChange={handleFormInput}
+							/>
+							{bType === 'general' ? (
+								<Input
+									placeholder='Enter email'
+									fullWidth
+									disableUnderline
+									name='email'
+									value={formData.email}
+									onChange={handleFormInput}
+								/>
+							) : (
+								<Input
+									placeholder='Enter GST no.'
+									fullWidth
+									disableUnderline
+									name='gstNo'
+									value={formData.gstNo}
+									onChange={handleFormInput}
+								/>
+							)}
+							<Input
+								placeholder='Enter contact no.'
+								fullWidth
+								disableUnderline
+								name='contactNo'
+								value={formData.contactNo}
+								onChange={handleFormInput}
+							/>
 							<Box sx={{ gridColumn: 'span 2 / auto', position: 'relative' }}>
 								<Input
 									placeholder='Enter your message'
@@ -274,9 +340,13 @@ export const Footer = () => {
 									multiline
 									minRows={4}
 									maxRows={4}
+									name='message'
+									value={formData.message}
+									onChange={handleFormInput}
 								/>
 								<Fab
 									disableRipple
+									type='submit'
 									sx={{
 										boxShadow: 'none',
 										height: 60,

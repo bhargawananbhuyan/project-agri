@@ -60,7 +60,7 @@ export const shopProducts = [
 	{
 		id: 3,
 		name: 'POWER WEEDER WM 430',
-		image: 'agri-03.png',
+		image: 'wm-430.png',
 		type: 'weeder',
 		description: {
 			engine: '2 HP - 6500 RP',

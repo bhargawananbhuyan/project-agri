@@ -464,9 +464,11 @@ export const ProductsGrid = () => {
 
 	let [openDialog, setOpenDialog] = useState(false)
 	let [productData, setProductData] = useState({})
+	const [mainImg, setMainImg] = useState('')
 
 	const handleDialogClose = () => {
 		setProductData({})
+		setMainImg('')
 		setOpenDialog(false)
 	}
 
@@ -666,7 +668,13 @@ export const ProductsGrid = () => {
 								height: 450,
 								position: 'relative',
 								borderRadius: 5,
-								'& img': {
+								'& .img-a': {
+									objectFit: 'cover',
+									width: '100%',
+									height: 'auto',
+									borderRadius: 5,
+								},
+								'& .img-b': {
 									position: 'absolute',
 									bottom: -150,
 									right: 0,
@@ -676,13 +684,23 @@ export const ProductsGrid = () => {
 								[theme.breakpoints.down('sm')]: {
 									height: 300,
 									borderRadius: 2.5,
-									'& img': {
+									'& .img-b': {
 										bottom: -125,
 									},
 								},
 							}}
 						>
-							<img src={`/assets/${productData.image}`} alt='' />
+							{mainImg && mainImg !== `/assets/${productData.image}` ? (
+								<img src={mainImg} alt='' className='img-a' />
+							) : mainImg && mainImg === `/assets/${productData.image}` ? (
+								<img src={mainImg} alt='' className='img-b' />
+							) : (
+								<img
+									src={`/assets/${productData.image}`}
+									alt=''
+									className='img-b'
+								/>
+							)}
 						</Box>
 						<Box
 							sx={{
@@ -782,17 +800,30 @@ export const ProductsGrid = () => {
 							},
 						}}
 					>
-						{[...new Array(8)].map((i) => (
-							<Box
-								key={i}
-								sx={{
-									height: 125,
-									width: 125,
-									backgroundColor: colors.grey[200],
-									borderRadius: 2.5,
-								}}
-							/>
-						))}
+						{productData?.images &&
+							[`/assets/${productData.image}`, ...productData.images].map(
+								(img, i) => (
+									<Box
+										onClick={() => setMainImg(img)}
+										key={i}
+										sx={{
+											height: 125,
+											width: 125,
+											backgroundColor: colors.grey[200],
+											borderRadius: 2.5,
+											overflow: 'hidden',
+
+											'& img': {
+												width: '100%',
+												height: 'auto',
+												objectFit: 'contain',
+											},
+										}}
+									>
+										<img src={img} alt='' />
+									</Box>
+								)
+							)}
 					</Box>
 					<Divider sx={{ my: 7.5, borderColor: colors.grey[200] }} />
 

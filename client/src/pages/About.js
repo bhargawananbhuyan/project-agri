@@ -459,7 +459,7 @@ const About = () => {
 							with a Bachelors of Commerce Degree from Loyola College. He simultaneously pursued 
 							a program in International Business from LIBA – Chennai, to hone his skill in 
 							International Business and Financial Management. He is the key driver for conceptualizing 
-							George Maijo Agri and driving its presence across India. His goal is ensure the George Maijo 
+							George Maijo Agri and driving its presence across India. His goal is to ensure George Maijo 
 							footprint in every farming district in India and to simplify the lives of the farming 
 							community by offering mechanised products for every step of their cultivation process.`,
 						},
